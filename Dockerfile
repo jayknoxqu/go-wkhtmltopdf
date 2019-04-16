@@ -4,7 +4,7 @@ FROM surnet/alpine-wkhtmltopdf:3.8-0.12.5-full as builder
 # Image
 FROM golang:1.11-alpine3.8
 
-nstall needed packages
+# Install needed packages
 RUN  echo "https://mirror.tuna.tsinghua.edu.cn/alpine/v3.8/main" > /etc/apk/repositories \
      && echo "https://mirror.tuna.tsinghua.edu.cn/alpine/v3.8/community" >> /etc/apk/repositories \
      && apk update && apk add --no-cache \
