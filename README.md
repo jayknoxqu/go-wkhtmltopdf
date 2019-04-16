@@ -41,7 +41,7 @@ The body should contain a JSON-encoded object containing the following parameter
   "cookies": {
     "foo": "bar",
     "baz": "foo"
-  }
+  },
   "output":"pdf"
 }
 ```
