@@ -30,14 +30,15 @@ The body should contain a JSON-encoded object containing the following parameter
 - **cookies**: A list of key-value arguments that are passed on to the appropriate `wkhtmltopdf` binary as separate `cookie` arguments.
 - **fileName**: The name of the download file.
 
-**Example:** posting the following JSON:
+**Example:** get the following JSON as request param `param`:
 
 ```
 {
   "url": "http://www.google.com",
   "options": {
     "margin-bottom": "1cm",
-    "orientation": "Landscape"
+    "orientation": "Landscape",
+    "disable-smart-shrinking":true
   },
   "cookies": {
     "foo": "bar",
@@ -47,6 +48,9 @@ The body should contain a JSON-encoded object containing the following parameter
   "fileName:"test"
 }
 ```
+
+> http://localhost:80/?param=jsonValue
+and the jsonValue need urlEncode first.
 
 will have the effect of the following command-line being executed on the server:
 

@@ -23,7 +23,6 @@ type documentRequest struct {
 	// TODO: whitelist options that can be passed to avoid errors,
 	// log warning when different options get passed
 	Options  map[string]interface{}
-	Params   []string
 	Cookies  map[string]string
 	FileName string
 }
@@ -61,12 +60,6 @@ func requestHandler(response http.ResponseWriter, request *http.Request) {
 		} else if element != false {
 			// Otherwise, use command-line argument with value (--foo bar)
 			segments = append(segments, fmt.Sprintf("--%v", key), fmt.Sprintf("%v", element))
-		}
-	}
-
-	if len(req.Params) > 0 {
-		for _, param := range req.Params {
-			segments = append(segments, param)
 		}
 	}
 
