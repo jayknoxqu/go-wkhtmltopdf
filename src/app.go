@@ -89,10 +89,12 @@ func requestHandler(response http.ResponseWriter, request *http.Request) {
 		contentType = "application/pdf"
 	}
 	if req.Url != "" {
-		segments = append(segments, req.Url, "-")
+		u, _ := url.QueryUnescape(req.Url)
+		segments = append(segments, u, "-")
 	} else if len(req.Urls) > 0 {
-		for _, url := range req.Urls {
-			segments = append(segments, url)
+		for _, u := range req.Urls {
+			uu, _ := url.QueryUnescape(u)
+			segments = append(segments, uu)
 		}
 		segments = append(segments, "-")
 	}
