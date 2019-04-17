@@ -22,9 +22,10 @@ type documentRequest struct {
 	Output string
 	// TODO: whitelist options that can be passed to avoid errors,
 	// log warning when different options get passed
-	Options map[string]interface{}
-	Params  []string
-	Cookies map[string]string
+	Options  map[string]interface{}
+	Params   []string
+	Cookies  map[string]string
+	FileName string
 }
 
 func logOutput(request *http.Request, message string) {
@@ -74,19 +75,23 @@ func requestHandler(response http.ResponseWriter, request *http.Request) {
 	}
 	var programFile string
 	var contentType string
+	var fileSuffix string
 	switch req.Output {
 	case "jpg":
 		programFile = "/bin/wkhtmltoimage"
 		contentType = "image/jpeg"
+		fileSuffix = ".jpeg"
 		segments = append(segments, "--format", "jpg", "-q")
 	case "png":
 		programFile = "/bin/wkhtmltoimage"
 		contentType = "image/png"
+		fileSuffix = ".png"
 		segments = append(segments, "--format", "png", "-q")
 	default:
 		// defaults to pdf
 		programFile = "/bin/wkhtmltopdf"
 		contentType = "application/pdf"
+		fileSuffix = ".pdf"
 	}
 	if req.Url != "" {
 		u, _ := url.QueryUnescape(req.Url)
@@ -101,6 +106,9 @@ func requestHandler(response http.ResponseWriter, request *http.Request) {
 	fmt.Println("\tRunning:", programFile, strings.Join(segments, " "))
 	cmd := exec.Command(programFile, segments...)
 	response.Header().Set("Content-Type", contentType)
+	if req.FileName != "" {
+		response.Header().Set("Content-Disposition", "attachment;filename="+url.QueryEscape(req.FileName)+fileSuffix)
+	}
 	cmd.Stdout = response
 	cmd.Start()
 	defer cmd.Wait()
