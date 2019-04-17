@@ -28,23 +28,29 @@ The body should contain a JSON-encoded object containing the following parameter
 - **output**: The type of document to generate, can be either `jpg`, `png` or `pdf`. Defauts to `pdf` if not specified. Depending on the output type the appropriate binary is called.
 - **options**: A list of key-value arguments that are passed on to the appropriate `wkhtmltopdf` binary. Boolean values are interpreted as flag arguments (e.g.: `--greyscale`).
 - **cookies**: A list of key-value arguments that are passed on to the appropriate `wkhtmltopdf` binary as separate `cookie` arguments.
+- **fileName**: The name of the download file.
 
-**Example:** posting the following JSON:
+**Example:** get the following JSON as request param `param`:
 
 ```
 {
   "url": "http://www.google.com",
   "options": {
     "margin-bottom": "1cm",
-    "orientation": "Landscape"
+    "orientation": "Landscape",
+    "disable-smart-shrinking":true
   },
   "cookies": {
     "foo": "bar",
     "baz": "foo"
   },
-  "output":"pdf"
+  "output":"pdf",
+  "fileName:"test"
 }
 ```
+
+> http://localhost:80/?param=jsonValue
+and the jsonValue need urlEncode first.
 
 will have the effect of the following command-line being executed on the server:
 
