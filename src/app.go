@@ -23,6 +23,7 @@ type documentRequest struct {
 	// TODO: whitelist options that can be passed to avoid errors,
 	// log warning when different options get passed
 	Options map[string]interface{}
+	Params  []string
 	Cookies map[string]string
 }
 
@@ -37,15 +38,15 @@ func requestHandler(response http.ResponseWriter, request *http.Request) {
 		logOutput(request, "404 not found")
 		return
 	}
-	if request.Method != "POST" {
-		response.Header().Set("Allow", "POST")
-		response.WriteHeader(http.StatusMethodNotAllowed)
-		logOutput(request, "405 not allowed")
-		return
-	}
-	decoder := json.NewDecoder(request.Body)
+	//if request.Method != "POST" {
+	//	response.Header().Set("Allow", "POST")
+	//	response.WriteHeader(http.StatusMethodNotAllowed)
+	//	logOutput(request, "405 not allowed")
+	//	return
+	//}
+	//decoder := json.NewDecoder(request.Body)
 	var req documentRequest
-	if err := decoder.Decode(&req); err != nil {
+	if err := json.Unmarshal([]byte(request.FormValue("param")), &req); err != nil {
 		response.WriteHeader(http.StatusBadRequest)
 		logOutput(request, "400 bad request (invalid JSON)")
 		return
@@ -61,6 +62,13 @@ func requestHandler(response http.ResponseWriter, request *http.Request) {
 			segments = append(segments, fmt.Sprintf("--%v", key), fmt.Sprintf("%v", element))
 		}
 	}
+
+	if len(req.Params) > 0 {
+		for _, param := range req.Params {
+			segments = append(segments, param)
+		}
+	}
+
 	for key, value := range req.Cookies {
 		segments = append(segments, "--cookie", key, url.QueryEscape(value))
 	}
