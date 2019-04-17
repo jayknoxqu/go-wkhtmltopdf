@@ -28,6 +28,7 @@ The body should contain a JSON-encoded object containing the following parameter
 - **output**: The type of document to generate, can be either `jpg`, `png` or `pdf`. Defauts to `pdf` if not specified. Depending on the output type the appropriate binary is called.
 - **options**: A list of key-value arguments that are passed on to the appropriate `wkhtmltopdf` binary. Boolean values are interpreted as flag arguments (e.g.: `--greyscale`).
 - **cookies**: A list of key-value arguments that are passed on to the appropriate `wkhtmltopdf` binary as separate `cookie` arguments.
+- **fileName**: The name of the download file.
 
 **Example:** posting the following JSON:
 
@@ -42,7 +43,8 @@ The body should contain a JSON-encoded object containing the following parameter
     "foo": "bar",
     "baz": "foo"
   },
-  "output":"pdf"
+  "output":"pdf",
+  "fileName:"test"
 }
 ```
 
