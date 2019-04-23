@@ -48,8 +48,10 @@ The body should contain a JSON-encoded object containing the following parameter
   "fileName":"test"
 }
 ```
-
-> http://localhost:80/?param=%7b%22url%22%3a%22http%3a%2f%2fwww.google.com%22%2c%22options%22%3a%7b%22margin-bottom%22%3a%221cm%22%2c%22orientation%22%3a%22Landscape%22%2c%22disable-smart-shrinking%22%3atrue%7d%2c%22cookies%22%3a%7b%22foo%22%3a%22bar%22%2c%22baz%22%3a%22foo%22%7d%2c%22output%22%3a%22pdf%22%2c%22fileName%22%3a%22test%22%7d
+### exempla
+```
+http://localhost:80/?param=%7b%22url%22%3a%22http%3a%2f%2fwww.google.com%22%2c%22options%22%3a%7b%22margin-bottom%22%3a%221cm%22%2c%22orientation%22%3a%22Landscape%22%2c%22disable-smart-shrinking%22%3atrue%7d%2c%22cookies%22%3a%7b%22foo%22%3a%22bar%22%2c%22baz%22%3a%22foo%22%7d%2c%22output%22%3a%22pdf%22%2c%22fileName%22%3a%22test%22%7d
+```
 **the json param need url encode .**
 
 will have the effect of the following command-line being executed on the server:
