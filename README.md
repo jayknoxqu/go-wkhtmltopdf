@@ -20,7 +20,7 @@ docker run -d --name go-wkhtmltopdf -p 8080:80 jayknoxqu/go-wkhtmltopdf:alpine3.
 
 ## Usage
 
-The service listens on port 80 for POST requests on the root path (`/`). Any other method returns a `405 not allowed` status. Any other path returns a `404 not found` status.
+The service listens on port 80 for GET requests on the root path (`/`). Any other method returns a `405 not allowed` status. Any other path returns a `404 not found` status.
 
 The body should contain a JSON-encoded object containing the following parameters:
 
@@ -45,17 +45,17 @@ The body should contain a JSON-encoded object containing the following parameter
     "baz": "foo"
   },
   "output":"pdf",
-  "fileName:"test"
+  "fileName":"test"
 }
 ```
 
-> http://localhost:80/?param=jsonValue
-and the jsonValue need urlEncode first.
+> http://localhost:80/?param=%7b%22url%22%3a%22http%3a%2f%2fwww.google.com%22%2c%22options%22%3a%7b%22margin-bottom%22%3a%221cm%22%2c%22orientation%22%3a%22Landscape%22%2c%22disable-smart-shrinking%22%3atrue%7d%2c%22cookies%22%3a%7b%22foo%22%3a%22bar%22%2c%22baz%22%3a%22foo%22%7d%2c%22output%22%3a%22pdf%22%2c%22fileName%22%3a%22test%22%7d
+**the json param need url encode .**
 
 will have the effect of the following command-line being executed on the server:
 
 ```
-/usr/local/bin/wkhtmltopdf --margin-bottom 1cm --orientation Landscape --cookie foo bar --cookie baz foo http://www.google.com -
+/bin/wkhtmltopdf --margin-bottom 1cm --orientation Landscape --cookie foo bar --cookie baz foo http://www.google.com -
 ```
 
 The `-` at the end of the command-line is so that the document contents are redirected to stdout so we can in turn redirect it to the web server's response stream.
