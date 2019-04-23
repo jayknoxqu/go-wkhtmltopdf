@@ -25,9 +25,9 @@ The service listens on port 80 for GET requests on the root path (`/`). Any othe
 The body should contain a JSON-encoded object containing the following parameters:
 
 - **url**: The URL of the page to convert.
+- **cookies**: A list of key-value arguments that are passed on to the appropriate `wkhtmltopdf` binary as separate `cookie` arguments.
 - **output**: The type of document to generate, can be either `jpg`, `png` or `pdf`. Defauts to `pdf` if not specified. Depending on the output type the appropriate binary is called.
 - **options**: A list of key-value arguments that are passed on to the appropriate `wkhtmltopdf` binary. Boolean values are interpreted as flag arguments (e.g.: `--greyscale`).
-- **cookies**: A list of key-value arguments that are passed on to the appropriate `wkhtmltopdf` binary as separate `cookie` arguments.
 - **fileName**: The name of the download file.
 
 **Example:** get the following JSON as request param `param`:
@@ -48,11 +48,11 @@ The body should contain a JSON-encoded object containing the following parameter
   "fileName":"test"
 }
 ```
-### exempla
-```
-http://localhost:80/?param=%7b%22url%22%3a%22http%3a%2f%2fwww.google.com%22%2c%22options%22%3a%7b%22margin-bottom%22%3a%221cm%22%2c%22orientation%22%3a%22Landscape%22%2c%22disable-smart-shrinking%22%3atrue%7d%2c%22cookies%22%3a%7b%22foo%22%3a%22bar%22%2c%22baz%22%3a%22foo%22%7d%2c%22output%22%3a%22pdf%22%2c%22fileName%22%3a%22test%22%7d
-```
 **the json param need url encode .**
+```
+http://localhost?param=%7b%22url%22%3a%22http%3a%2f%2fwww.google.com%22%2c%22options%22%3a%7b%22margin-bottom%22%3a%221cm%22%2c%22orientation%22%3a%22Landscape%22%2c%22disable-smart-shrinking%22%3atrue%7d%2c%22cookies%22%3a%7b%22foo%22%3a%22bar%22%2c%22baz%22%3a%22foo%22%7d%2c%22output%22%3a%22pdf%22%2c%22fileName%22%3a%22test%22%7d
+```
+
 
 will have the effect of the following command-line being executed on the server:
 
