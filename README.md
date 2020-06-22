@@ -1,6 +1,6 @@
 # wkhtmltopdf as a web service
 
-A dockerized webservice written in [Go](https://golang.org/) that uses [wkhtmltopdf](http://wkhtmltopdf.org/) to convert HTML into documents (images or pdf files).
+A docker web service written in [Go](https://golang.org/) that uses [wkhtmltopdf](http://wkhtmltopdf.org/) to convert HTML into documents (images or pdf files).
 
 ## Docker
 
