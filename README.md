@@ -7,13 +7,13 @@ A dockerized webservice written in [Go](https://golang.org/) that uses [wkhtmlto
 ### build
 
 ```
-docker build -t jayknoxqu/go-wkhtmltopdf:1.1v .
+docker build -t jayknoxqu/go-wkhtmltopdf:1.0v .
 ```
 
 ### run
 
 ```
-docker run -d --name go-wkhtmltopdf -p 8080:80 jayknoxqu/go-wkhtmltopdf:1.1v
+docker run -d --name go-wkhtmltopdf -p 8080:80 jayknoxqu/go-wkhtmltopdf:1.0v
 ```
 
 
