@@ -13,7 +13,7 @@ docker build -t jayknoxqu/go-wkhtmltopdf:1.0v .
 ### run
 
 ```
-docker run -d --name go-wkhtmltopdf -p 8080:80 jayknoxqu/go-wkhtmltopdf:1.0v
+docker run -d --name go-wkhtmltopdf -p 9900:80 jayknoxqu/go-wkhtmltopdf:1.0v
 ```
 
 
@@ -50,7 +50,7 @@ The body should contain a JSON-encoded object containing the following parameter
 ```
 **the json param need url encode .**
 ```
-http://localhost?param=%7b%22url%22%3a%22http%3a%2f%2fwww.google.com%22%2c%22options%22%3a%7b%22margin-bottom%22%3a%221cm%22%2c%22orientation%22%3a%22Landscape%22%2c%22disable-smart-shrinking%22%3atrue%7d%2c%22cookies%22%3a%7b%22foo%22%3a%22bar%22%2c%22baz%22%3a%22foo%22%7d%2c%22output%22%3a%22pdf%22%2c%22fileName%22%3a%22test%22%7d
+http://localhost:9900?param=%7b%22url%22%3a%22http%3a%2f%2fwww.google.com%22%2c%22options%22%3a%7b%22margin-bottom%22%3a%221cm%22%2c%22orientation%22%3a%22Landscape%22%2c%22disable-smart-shrinking%22%3atrue%7d%2c%22cookies%22%3a%7b%22foo%22%3a%22bar%22%2c%22baz%22%3a%22foo%22%7d%2c%22output%22%3a%22pdf%22%2c%22fileName%22%3a%22test%22%7d
 ```
 
 
